@@ -1,6 +1,9 @@
 bind9-host
 bwm-ng
+dosfstools
+ethtool
 firmware-bnx2
+gdisk
 ifupdown
 iputils-arping
 iputils-ping
