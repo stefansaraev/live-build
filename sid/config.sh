@@ -10,8 +10,7 @@ lb config \
   -b iso-hybrid \
   --bootappend-live "boot=live components loglevel=3" \
   --bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
-  --bootloaders "syslinux" \
-  --zsync false \
+  --bootloader "syslinux" \
   --debootstrap-options "--variant=minbase" \
   -d sid \
   --iso-volume "sid" \
