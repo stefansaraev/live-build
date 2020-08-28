@@ -1,0 +1,31 @@
+#!/bin/sh
+
+lb config \
+  --apt apt \
+  --apt-indices false \
+  --apt-options "--yes -oAcquire::Languages=none -oAcquire::PDiffs=false -oAPT::Install-Recommends=0 -oAPT::Install-Suggests=0 -oDpkg::Progress-Fancy=true" \
+  --apt-recommends false \
+  --apt-source-archives false \
+  -a amd64 \
+  -b iso-hybrid \
+  --bootappend-live "boot=live components loglevel=3" \
+  --bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
+  --bootloader "syslinux" \
+  --debootstrap-options "--variant=minbase" \
+  -d focal \
+  --iso-volume "focal" \
+  --archive-areas "main restricted universe multiverse" \
+  --firmware-binary false \
+  --firmware-chroot false \
+  --parent-mirror-bootstrap http://bg.archive.ubuntu.com/ubuntu/ \
+  --parent-mirror-chroot http://bg.archive.ubuntu.com/ubuntu/ \
+  --parent-mirror-chroot-security http://security.ubuntu.com/ubuntu/ \
+  --parent-mirror-binary http://bg.archive.ubuntu.com/ubuntu/ \
+  --parent-mirror-binary-security http://security.ubuntu.com/ubuntu/ \
+  --mirror-bootstrap http://bg.archive.ubuntu.com/ubuntu/ \
+  --mirror-chroot http://bg.archive.ubuntu.com/ubuntu/ \
+  --mirror-chroot-security http://bg.archive.ubuntu.com/ubuntu/ \
+  --mirror-binary http://bg.archive.ubuntu.com/ubuntu/ \
+  --mirror-binary-security http://bg.archive.ubuntu.com/ubuntu/ \
+  -k "generic" \
+  --mode ubuntu
