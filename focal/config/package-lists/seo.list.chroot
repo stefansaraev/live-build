@@ -8,6 +8,7 @@ ifupdown
 iputils-arping
 iputils-ping
 isc-dhcp-client
+kbd
 less
 mdadm
 mtr-tiny
