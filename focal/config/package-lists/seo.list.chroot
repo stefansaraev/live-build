@@ -13,6 +13,7 @@ less
 mdadm
 mtr-tiny
 net-tools
+network-manager
 nano
 openssh-server
 parted

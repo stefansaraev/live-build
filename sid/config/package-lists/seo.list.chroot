@@ -3,6 +3,7 @@ bwm-ng
 dosfstools
 ethtool
 firmware-bnx2
+firmware-iwlwifi
 gdisk
 ifupdown
 iputils-arping
@@ -13,6 +14,7 @@ less
 mdadm
 mtr-tiny
 net-tools
+network-manager
 nano
 openssh-server
 parted
