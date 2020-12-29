@@ -1,5 +1,6 @@
 bind9-host
 bwm-ng
+debootstrap
 dosfstools
 ethtool
 firmware-bnx2
