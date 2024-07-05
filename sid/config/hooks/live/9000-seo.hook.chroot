@@ -55,6 +55,6 @@ rm -f /usr/lib/live/config/1190-broadcom-sta
 
 # linux-headers cleanup
 rm -rf /usr/src/zfs-*
-sed 's/Depends: kmod | kldutils, .*/Depends: kmod/g' -i /var/lib/dpkg/status
+sed 's/Depends: kmod, dpkg-dev, .*/Depends: kmod/g' -i /var/lib/dpkg/status
 sed 's/libc6-dev | libc-dev, //g' -i /var/lib/dpkg/status
 apt-get -y --purge autoremove linux-headers* gcc dpkg-dev make build-essential patch libc6-dev linux-libc-dev
