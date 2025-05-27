@@ -9,6 +9,7 @@ fdisk
 firmware-bnx2
 firmware-bnx2x
 firmware-iwlwifi
+firmware-qlogic
 gdisk
 ifupdown
 iputils-arping
