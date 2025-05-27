@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for dist in bookworm sid ; do
+for dist in trixie ; do
   pushd $dist
   lb clean
   ./config.sh

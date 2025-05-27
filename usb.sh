@@ -26,19 +26,19 @@ cp /usr/lib/syslinux/modules/bios/{libutil,menu}.c32 build/boot/modules/bios
 mkdir -p build/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi build/EFI/BOOT/bootx64.efi
 
-mkdir -p build/live/bullseye
-wget http://boot.test.net.in/live/bullseye/filesystem.squashfs -O build/live/bullseye/filesystem.squashfs
-wget http://boot.test.net.in/live/bullseye/initrd.img -O build/live/bullseye/initrd.img
-wget http://boot.test.net.in/live/bullseye/vmlinuz -O build/live/bullseye/vmlinuz
+mkdir -p build/live/bookworm
+wget http://boot.test.net.in/live/bookworm/filesystem.squashfs -O build/live/bookworm/filesystem.squashfs
+wget http://boot.test.net.in/live/bookworm/initrd.img -O build/live/bookworm/initrd.img
+wget http://boot.test.net.in/live/bookworm/vmlinuz -O build/live/bookworm/vmlinuz
 
-mkdir -p build/live/sid
-wget http://boot.test.net.in/live/sid/filesystem.squashfs -O build/live/sid/filesystem.squashfs
-wget http://boot.test.net.in/live/sid/initrd.img -O build/live/sid/initrd.img
-wget http://boot.test.net.in/live/sid/vmlinuz -O build/live/sid/vmlinuz
+mkdir -p build/live/trixie
+wget http://boot.test.net.in/live/trixie/filesystem.squashfs -O build/live/trixie/filesystem.squashfs
+wget http://boot.test.net.in/live/trixie/initrd.img -O build/live/trixie/initrd.img
+wget http://boot.test.net.in/live/trixie/vmlinuz -O build/live/trixie/vmlinuz
 
 cat > build/syslinux.cfg << _EOF_
 PATH /boot/modules/bios
-DEFAULT live-bullseye
+DEFAULT live-bookworm
 PROMPT 0
 TIMEOUT 600
 ONTIMEOUT live
@@ -60,19 +60,19 @@ MENU COLOR border 0 #ffffffff #ee000000 std
 MENU COLOR title  0 #ffff3f7f #ee000000 std
 MENU COLOR unsel  0 #ffffffff #ee000000 std
 
-LABEL live-bullseye
-  MENU LABEL ^Live (bullseye)
+LABEL live-bookworm
+  MENU LABEL ^Live (bookworm)
   MENU default
-  KERNEL /live/bullseye/vmlinuz
-  INITRD /live/bullseye/initrd.img
-  APPEND boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bullseye toram
+  KERNEL /live/bookworm/vmlinuz
+  INITRD /live/bookworm/initrd.img
+  APPEND boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bookworm toram
 
-LABEL live-sid
-  MENU LABEL ^Live (sid)
+LABEL live-trixie
+  MENU LABEL ^Live (trixie)
   MENU default
-  KERNEL /live/sid/vmlinuz
-  INITRD /live/sid/initrd.img
-  APPEND boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/sid toram
+  KERNEL /live/trixie/vmlinuz
+  INITRD /live/trixie/initrd.img
+  APPEND boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/trixie toram
 
 LABEL net
   MENU LABEL Boot from test.net.in
@@ -83,7 +83,7 @@ _EOF_
 mkdir -p build/loader
 
 cat > build/loader/loader.conf << _EOF_
-default       01-live-bullseye.conf
+default       01-live-bookworm.conf
 timeout       10
 console-mode  keep
 editor        yes
@@ -93,18 +93,18 @@ _EOF_
 
 mkdir -p build/loader/entries
 
-cat > build/loader/entries/01-live-bullseye.conf << _EOF_
-title      ^Live (bullseye)
-options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bullseye toram
-linux      /live/bullseye/vmlinuz
-initrd     /live/bullseye/initrd.img
+cat > build/loader/entries/01-live-bookworm.conf << _EOF_
+title      ^Live (bookworm)
+options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bookworm toram
+linux      /live/bookworm/vmlinuz
+initrd     /live/bookworm/initrd.img
 _EOF_
 
-cat > build/loader/entries/02-live-sid.conf << _EOF_
-title      ^Live (sid)
-options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/sid toram
-linux      /live/sid/vmlinuz
-initrd     /live/sid/initrd.img
+cat > build/loader/entries/02-live-trixie.conf << _EOF_
+title      ^Live (trixie)
+options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/trixie toram
+linux      /live/trixie/vmlinuz
+initrd     /live/trixie/initrd.img
 _EOF_
 
 cat > build/loader/entries/10-ipxe.conf << _EOF_

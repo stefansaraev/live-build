@@ -1,5 +1,0 @@
-Acquire::Languages "none";
-Acquire::PDiffs "false";
-APT::Install-Recommends "0";
-APT::Install-Suggests "0";
-Dpkg::Progress-Fancy "1";

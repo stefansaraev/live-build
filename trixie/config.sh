@@ -12,11 +12,10 @@ lb config \
   --bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
   --bootloader "syslinux" \
   --debootstrap-options "--variant=minbase" \
-  -d sid \
-  --iso-volume "sid" \
+  -d trixie \
+  --iso-volume "trixie" \
   --archive-areas "main contrib non-free non-free-firmware" \
   --parent-archive-areas "main contrib non-free non-free-firmware" \
   --linux-packages "linux-image linux-headers" \
   --firmware-binary false \
-  --firmware-chroot false \
-  --security false
+  --firmware-chroot false
