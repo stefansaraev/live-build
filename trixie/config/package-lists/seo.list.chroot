@@ -4,6 +4,7 @@ bwm-ng
 ca-certificates
 debootstrap
 dosfstools
+e2fsprogs
 ethtool
 fdisk
 firmware-bnx2
