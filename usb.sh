@@ -26,11 +26,6 @@ cp /usr/lib/syslinux/modules/bios/{libutil,menu}.c32 build/boot/modules/bios
 mkdir -p build/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi build/EFI/BOOT/bootx64.efi
 
-mkdir -p build/live/bookworm
-wget http://boot.test.net.in/live/bookworm/filesystem.squashfs -O build/live/bookworm/filesystem.squashfs
-wget http://boot.test.net.in/live/bookworm/initrd.img -O build/live/bookworm/initrd.img
-wget http://boot.test.net.in/live/bookworm/vmlinuz -O build/live/bookworm/vmlinuz
-
 mkdir -p build/live/trixie
 wget http://boot.test.net.in/live/trixie/filesystem.squashfs -O build/live/trixie/filesystem.squashfs
 wget http://boot.test.net.in/live/trixie/initrd.img -O build/live/trixie/initrd.img
@@ -38,7 +33,7 @@ wget http://boot.test.net.in/live/trixie/vmlinuz -O build/live/trixie/vmlinuz
 
 cat > build/syslinux.cfg << _EOF_
 PATH /boot/modules/bios
-DEFAULT live-bookworm
+DEFAULT live-trixie
 PROMPT 0
 TIMEOUT 600
 ONTIMEOUT live
@@ -60,13 +55,6 @@ MENU COLOR border 0 #ffffffff #ee000000 std
 MENU COLOR title  0 #ffff3f7f #ee000000 std
 MENU COLOR unsel  0 #ffffffff #ee000000 std
 
-LABEL live-bookworm
-  MENU LABEL ^Live (bookworm)
-  MENU default
-  KERNEL /live/bookworm/vmlinuz
-  INITRD /live/bookworm/initrd.img
-  APPEND boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bookworm toram
-
 LABEL live-trixie
   MENU LABEL ^Live (trixie)
   MENU default
@@ -83,7 +71,7 @@ _EOF_
 mkdir -p build/loader
 
 cat > build/loader/loader.conf << _EOF_
-default       01-live-bookworm.conf
+default       01-live-trixie.conf
 timeout       10
 console-mode  keep
 editor        yes
@@ -93,14 +81,7 @@ _EOF_
 
 mkdir -p build/loader/entries
 
-cat > build/loader/entries/01-live-bookworm.conf << _EOF_
-title      ^Live (bookworm)
-options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/bookworm toram
-linux      /live/bookworm/vmlinuz
-initrd     /live/bookworm/initrd.img
-_EOF_
-
-cat > build/loader/entries/02-live-trixie.conf << _EOF_
+cat > build/loader/entries/01-live-trixie.conf << _EOF_
 title      ^Live (trixie)
 options    boot=live components loglevel=3 net.ifnames=0 live-media-path=/live/trixie toram
 linux      /live/trixie/vmlinuz
