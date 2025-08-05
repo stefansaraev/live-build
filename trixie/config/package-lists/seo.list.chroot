@@ -33,5 +33,6 @@ tcpdump
 telnet
 usbutils
 vlan
+wpasupplicant
 zfsutils-linux
 zfs-dkms gcc

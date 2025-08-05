@@ -1,7 +1,11 @@
 awesome
 awesome-extra
 dmenu
-xfce4-terminal
+glib-networking
+mate-polkit
+network-manager-applet
+network-manager-gnome
+polkitd
 x11-common
 x11-utils
 x11-xkb-utils
@@ -9,6 +13,7 @@ x11-xserver-utils
 xauth
 xbitmaps
 xdg-utils
+xfce4-terminal
 xfconf
 xfonts-base
 xfonts-encodings
