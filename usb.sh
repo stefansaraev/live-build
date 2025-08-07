@@ -94,6 +94,7 @@ linux    /boot/ipxe.efi
 options  dhcp && chain http://boot.test.net.in
 _EOF_
 
+sgdisk -Z ${DEVICE}
 sgdisk -g -o ${DEVICE}
 sgdisk -o ${DEVICE}
 sgdisk -a 1 -n 1:34:1G -c 1:esp -t 1:ef00 -A 1:set:2 -p ${DEVICE}
