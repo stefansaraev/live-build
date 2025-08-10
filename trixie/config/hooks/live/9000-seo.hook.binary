@@ -20,5 +20,5 @@ rm -f isolinux/advanced.cfg
 rm -f live/initrd.img-*
 rm -f live/vmlinuz-*
 
-# remove grub
-rm -rf boot/
+# grub
+sed -i 's|vmlinuz-.* boot=|vmlinuz boot=|g;s|initrd.img-.*|initrd.img|g' boot/grub/grub.cfg
